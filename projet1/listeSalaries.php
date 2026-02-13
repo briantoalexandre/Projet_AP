@@ -9,7 +9,7 @@ $services = nb_par_serv();
 
 ?>
 
-<a href="createContact.php">Ajouter un salariées</a>
+<button href="createContactHTML.php">Ajouter un salariées</button>
 
 <div class="container my-5">
   <table class="table table-hover">

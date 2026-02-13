@@ -2,13 +2,13 @@
 require_once("connexion.php");
 
 function createSalaries($tab) {
-    return 1
     try {
+        global $conn;
+        $sql = 'INSERT INTO `salaries` (nom, prenom, date_naissance ,date_embauche, salaire, service) VALUES
+        (\''.$tab["name"].'\', \''.$tab["surname"].'\', \''.$tab["birth"].'\', \''.$tab["job"].'\', \''.$tab["salaire"].'\', \''.$tab["service"].'\')';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
 
-        $sql = "INSERT INTO `contact` (nom, prenom, date_naissance ,date_embauche, salaire, service) VALUES
-        ('$nom', '$prenom', '$birth', '$job', '$salaire', '$service')";
-
-        $conn->exec($sql);
         header('Location: listeContact.php');
         }
 
@@ -17,9 +17,9 @@ function createSalaries($tab) {
     }
 }
 
-function readSalaries(){
+function readSalaries() {
     try {
-        global $conn ;
+        global $conn;
         $sql = "SELECT * FROM salaries";
         $stmt = $conn->prepare($sql);
         $stmt->execute();

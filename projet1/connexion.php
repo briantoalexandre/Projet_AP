@@ -4,6 +4,7 @@ $servername = 'localhost';
 $username = 'sio';
 $password = 'sio';
 $dbname = "chambord";
+
 //On essaie de se connecter
 try{
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,
