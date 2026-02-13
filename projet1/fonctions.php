@@ -1,6 +1,21 @@
 <?php
 require_once("connexion.php");
-function getLesSalaries(){
+
+function createSalaries() {
+    try {
+        $sql = "INSERT INTO `contact` (nom,prenom,mail,naissance,sujet) VALUES
+        ('$nom','$prenom','$email', '$naissance', '$demande')";
+
+        $conn->exec($sql);
+        header('Location: listeContact.php');
+        }
+
+    catch(PDOException $e){
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+
+function readSalaries(){
     try {
         global $conn ;
         $sql = "SELECT * FROM salaries";
@@ -14,6 +29,36 @@ function getLesSalaries(){
         echo "Erreur : " . $e->getMessage();
     }
 }
+function updateSalaries() {
+    try {
+        global $conn ;
+        $sql = "select service, count(id) as nb_par_service from salaries group by service";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat ;
+    }
+    catch(PDOException $e){
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+function deleteSalaries() {
+    try {
+        global $conn ;
+        $sql = "select service, count(id) as nb_par_service from salaries group by service";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat ;
+    }
+    catch(PDOException $e){
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+
+
 function nb_salarie(){
     try {
         global $conn ;
@@ -75,4 +120,5 @@ function nb_par_serv() {
         echo "Erreur : " . $e->getMessage();
     }
 }
+
 ?>
