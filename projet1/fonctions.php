@@ -1,10 +1,12 @@
 <?php
 require_once("connexion.php");
 
-function createSalaries() {
+function createSalaries($tab) {
+    return 1
     try {
-        $sql = "INSERT INTO `contact` (nom,prenom,mail,naissance,sujet) VALUES
-        ('$nom','$prenom','$email', '$naissance', '$demande')";
+
+        $sql = "INSERT INTO `contact` (nom, prenom, date_naissance ,date_embauche, salaire, service) VALUES
+        ('$nom', '$prenom', '$birth', '$job', '$salaire', '$service')";
 
         $conn->exec($sql);
         header('Location: listeContact.php');
