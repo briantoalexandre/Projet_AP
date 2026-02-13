@@ -9,7 +9,7 @@ $services = nb_par_serv();
 
 ?>
 
-<button href="createContactHTML.php">Ajouter un salariées</button>
+<a href="createContactHTML.php">Ajouter un salariées</a>
 
 <div class="container my-5">
   <table class="table table-hover">
@@ -20,15 +20,19 @@ $services = nb_par_serv();
       <th>date-embauche</th>
       <th>salaire</th>
       <th>service</th>
+      <th>Update</th>
+      <th>Delete</th>
     <?php foreach ($lesSalaries as $leSalarie): ?>    
       <tr>      
         <td><?= htmlspecialchars( $leSalarie['id']); ?></td> 
         <td><?= htmlspecialchars( $leSalarie['nom']); ?></td>  
-        <td><?= htmlspecialchars($leSalarie['prenom']); ?></td>
+        <td><?= htmlspecialchars( $leSalarie['prenom']); ?></td>
         <td><?= htmlspecialchars( $leSalarie['date_naissance']); ?></td> 
         <td><?= htmlspecialchars( $leSalarie['date_embauche']); ?></td>
         <td><?= htmlspecialchars( $leSalarie['salaire']); ?></td>
         <td><?= htmlspecialchars( $leSalarie['service']); ?></td>
+        <td><?= htmlspecialchars( $leSalarie['service']); ?></td>
+        <td><a href="?value=<?= deleteSalaries($leSalarie['id']); ?>"><?= htmlspecialchars("Supp")?></a></td>
       </tr> 
     <?php endforeach; ?>
   </table>

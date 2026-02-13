@@ -2,6 +2,7 @@
 require_once("connexion.php");
 
 function createSalaries($tab) {
+    print_r($tab);
     try {
         global $conn;
         $sql = 'INSERT INTO `salaries` (nom, prenom, date_naissance ,date_embauche, salaire, service) VALUES
@@ -9,14 +10,13 @@ function createSalaries($tab) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        header('Location: listeContact.php');
+        header('Location: contact.php');
         }
 
     catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
 }
-
 function readSalaries() {
     try {
         global $conn;
@@ -30,7 +30,7 @@ function readSalaries() {
     catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
-}
+
 function updateSalaries() {
     try {
         global $conn ;
@@ -38,28 +38,24 @@ function updateSalaries() {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $resultat ;
     }
     catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
 }
-function deleteSalaries() {
+}
+function deleteSalaries($id) {
     try {
         global $conn ;
-        $sql = "select service, count(id) as nb_par_service from salaries group by service";
+        $sql = "delete from salaries where id=$id;";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $resultat ;
     }
     catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
 }
-
 
 function nb_salarie(){
     try {
