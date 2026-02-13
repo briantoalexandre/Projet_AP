@@ -1,14 +1,35 @@
 <?php
 require_once('header.html');
 require_once("fonctions.php");
+$lesSalaries = getLesSalaries();
 $nb_sal = nb_salarie();
 $sal_moy = sal_moy();
 $sal_mmax = min_max();
 $services = nb_par_serv();
-print_r($services)
 
 ?>
 <div class="container my-5">
+  <table class="table table-hover">
+      <th>id</th> 
+      <th>nom</th>
+      <th>prenom</th>
+      <th>date-naissance</th>
+      <th>date-embauche</th>
+      <th>salaire</th>
+      <th>service</th>
+    <?php foreach ($lesSalaries as $leSalarie): ?>    
+      <tr>      
+        <td><?= htmlspecialchars( $leSalarie['id']); ?></td> 
+        <td><?= htmlspecialchars( $leSalarie['nom']); ?></td>  
+        <td><?= htmlspecialchars($leSalarie['prenom']); ?></td>
+        <td><?= htmlspecialchars( $leSalarie['date_naissance']); ?></td> 
+        <td><?= htmlspecialchars( $leSalarie['date_embauche']); ?></td>
+        <td><?= htmlspecialchars( $leSalarie['salaire']); ?></td>
+        <td><?= htmlspecialchars( $leSalarie['service']); ?></td>
+      </tr> 
+    <?php endforeach; ?>
+  </table>
+
 <table class="table table-hover">
 <th>nb salariées</th>
 <th>salaire moy</th>
