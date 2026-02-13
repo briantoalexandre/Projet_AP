@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="icon" href="../img/logo_Hotel_Chambord-ico.png" />
+  <title>Gestion | Hôtel Chambord</title>
+</head>
+<body>
+
+  <!-- Bandeau Se Connecter -->
+  <div class="text-end small py-1 px-3 bg-light border-bottom">
+    <a href="connexion.html" class="text-dark">
+      <i class="fa-solid fa-user"></i> Se connecter
+    </a>
+  </div>
+
+
+
+  <nav class="navbar navbar-expand-lg bg-light sticky-top shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../img/logo_Hotel_Chambord-all.png" class="logo" alt="logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse width-800" id="navMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fa-solid fa-arrow-left"></i> Retour Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <!-- Page Gestion -->
+  <main class="container py-5">
+    <h2 class="text-center mb-4">Gestion des utilisateurs et services</h2>
+
+    <!-- Clients -->
+    <section class="mb-5">
+      <h4>Clients</h4>
+      <form id="formClient" class="row g-3 mb-3">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Nom" id="nomClient" required>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Prénom" id="prenomClient" required>
+        </div>
+        <div class="col-md-3">
+          <input type="email" class="form-control" placeholder="Email" id="emailClient" required>
+        </div>
+        <div class="col-md-3">
+          <input type="password" class="form-control" placeholder="Mot de passe" id="passwordClient" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-dark">Ajouter Client</button>
+        </div>
+      </form>
+
+      <input type="text" class="form-control mb-2" placeholder="Rechercher client..." id="searchClient">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="liste-clients"></tbody>
+      </table>
+    </section>
+
+    <!-- Services -->
+    <section class="mb-5">
+      <h4>Services</h4>
+      <form id="formService" class="row g-3 mb-3">
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Nom du service" id="nomService" required>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" placeholder="Description" id="descService" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-dark">Ajouter Service</button>
+        </div>
+      </form>
+
+      <input type="text" class="form-control mb-2" placeholder="Rechercher service..." id="searchService">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="liste-services"></tbody>
+      </table>
+    </section>
+
+    <!-- Administrateurs -->
+    <section class="mb-5">
+      <h4>Administrateurs</h4>
+      <form id="formAdmin" class="row g-3 mb-3">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Nom" id="nomAdmin" required>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Prénom" id="prenomAdmin" required>
+        </div>
+        <div class="col-md-3">
+          <input type="email" class="form-control" placeholder="Email" id="emailAdmin" required>
+        </div>
+        <div class="col-md-3">
+          <input type="password" class="form-control" placeholder="Mot de passe" id="passwordAdmin" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-dark">Ajouter Admin</button>
+        </div>
+      </form>
+
+      <input type="text" class="form-control mb-2" placeholder="Rechercher admin..." id="searchAdmin">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="liste-admins"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Script Bootstrap -->
+  <script src="../js/bootstrap.js"></script>
+
+  <!-- Script Gestion -->
+  <script>
+    // --- Exemple Clients ---
+    let clients = JSON.parse(localStorage.getItem("clients")) || [
+      {nom: "Dupont", prenom: "Jean", email: "jean.dupont@example.com", password: "1234"},
+      {nom: "Martin", prenom: "Sophie", email: "sophie.martin@example.com", password: "abcd"}
+    ];
+
+    function afficherClients() {
+      const tbody = document.getElementById("liste-clients");
+      const search = document.getElementById("searchClient").value.toLowerCase();
+      tbody.innerHTML = "";
+      clients.forEach((c,i) => {
+        if(c.nom.toLowerCase().includes(search) || c.prenom.toLowerCase().includes(search) || c.email.toLowerCase().includes(search)) {
+          tbody.innerHTML += `
+            <tr>
+              <td>${c.nom}</td>
+              <td>${c.prenom}</td>
+              <td>${c.email}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-primary me-2" onclick="modifierClient(${i})"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn btn-sm btn-outline-danger" onclick="supprimerClient(${i})"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          `;
+        }
+      });
+      localStorage.setItem("clients", JSON.stringify(clients));
+    }
+
+    function ajouterClient(e){
+      e.preventDefault();
+      const nom = document.getElementById("nomClient").value;
+      const prenom = document.getElementById("prenomClient").value;
+      const email = document.getElementById("emailClient").value;
+      const password = document.getElementById("passwordClient").value;
+      clients.push({nom, prenom, email, password});
+      afficherClients();
+      document.getElementById("formClient").reset();
+    }
+
+    function supprimerClient(i){ if(confirm("Supprimer ce client ?")) { clients.splice(i,1); afficherClients(); } }
+
+    function modifierClient(i){
+      document.getElementById("nomClient").value = clients[i].nom;
+      document.getElementById("prenomClient").value = clients[i].prenom;
+      document.getElementById("emailClient").value = clients[i].email;
+      document.getElementById("passwordClient").value = clients[i].password;
+      clients.splice(i,1);
+      afficherClients();
+    }
+
+    document.getElementById("formClient").addEventListener("submit", ajouterClient);
+    document.getElementById("searchClient").addEventListener("input", afficherClients);
+
+    // --- Exemple Services ---
+    let services = JSON.parse(localStorage.getItem("services")) || [
+      {nom: "Spa", description: "Massage et soins relaxants"},
+      {nom: "Restaurant", description: "Cuisine française traditionnelle"}
+    ];
+
+    function afficherServices(){
+      const tbody = document.getElementById("liste-services");
+      const search = document.getElementById("searchService").value.toLowerCase();
+      tbody.innerHTML="";
+      services.forEach((s,i)=>{
+        if(s.nom.toLowerCase().includes(search) || s.description.toLowerCase().includes(search)){
+          tbody.innerHTML += `
+            <tr>
+              <td>${s.nom}</td>
+              <td>${s.description}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-primary me-2" onclick="modifierService(${i})"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn btn-sm btn-outline-danger" onclick="supprimerService(${i})"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          `;
+        }
+      });
+      localStorage.setItem("services", JSON.stringify(services));
+    }
+
+    function ajouterService(e){
+      e.preventDefault();
+      const nom = document.getElementById("nomService").value;
+      const description = document.getElementById("descService").value;
+      services.push({nom, description});
+      afficherServices();
+      document.getElementById("formService").reset();
+    }
+
+    function supprimerService(i){ if(confirm("Supprimer ce service ?")) { services.splice(i,1); afficherServices(); } }
+
+    function modifierService(i){
+      document.getElementById("nomService").value = services[i].nom;
+      document.getElementById("descService").value = services[i].description;
+      services.splice(i,1);
+      afficherServices();
+    }
+
+    document.getElementById("formService").addEventListener("submit", ajouterService);
+    document.getElementById("searchService").addEventListener("input", afficherServices);
+
+    // --- Exemple Admins ---
+    let admins = JSON.parse(localStorage.getItem("admins")) || [
+      {nom: "Admin", prenom: "Principal", email: "admin@hotelchambord.com", password: "admin123"}
+    ];
+
+    function afficherAdmins(){
+      const tbody = document.getElementById("liste-admins");
+      const search = document.getElementById("searchAdmin").value.toLowerCase();
+      tbody.innerHTML="";
+      admins.forEach((a,i)=>{
+        if(a.nom.toLowerCase().includes(search) || a.prenom.toLowerCase().includes(search) || a.email.toLowerCase().includes(search)){
+          tbody.innerHTML += `
+            <tr>
+              <td>${a.nom}</td>
+              <td>${a.prenom}</td>
+              <td>${a.email}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-primary me-2" onclick="modifierAdmin(${i})"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn btn-sm btn-outline-danger" onclick="supprimerAdmin(${i})"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          `;
+        }
+      });
+      localStorage.setItem("admins", JSON.stringify(admins));
+    }
+
+    function ajouterAdmin(e){
+      e.preventDefault();
+      const nom = document.getElementById("nomAdmin").value;
+      const prenom = document.getElementById("prenomAdmin").value;
+      const email = document.getElementById("emailAdmin").value;
+      const password = document.getElementById("passwordAdmin").value;
+      admins.push({nom, prenom, email, password});
+      afficherAdmins();
+      document.getElementById("formAdmin").reset();
+    }
+
+    function supprimerAdmin(i){ if(confirm("Supprimer cet administrateur ?")) { admins.splice(i,1); afficherAdmins(); } }
+
+    function modifierAdmin(i){
+      document.getElementById("nomAdmin").value = admins[i].nom;
+      document.getElementById("prenomAdmin").value = admins[i].prenom;
+      document.getElementById("emailAdmin").value = admins[i].email;
+      document.getElementById("passwordAdmin").value = admins[i].password;
+      admins.splice(i,1);
+      afficherAdmins();
+    }
+
+    document.getElementById("formAdmin").addEventListener("submit", ajouterAdmin);
+    document.getElementById("searchAdmin").addEventListener("input", afficherAdmins);
+
+    // --- Initialisation ---
+    afficherClients();
+    afficherServices();
+    afficherAdmins();
+  </script>
+</body>
+</html>
