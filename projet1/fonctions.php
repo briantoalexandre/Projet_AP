@@ -10,7 +10,7 @@ function createSalaries($tab) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        header('Location: contact.php');
+        header('Location: createContactHTML.php');
         }
 
     catch(PDOException $e){
