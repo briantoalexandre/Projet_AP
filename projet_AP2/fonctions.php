@@ -70,7 +70,7 @@ function nb_salarie(){
         $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $resultat[0]["nb"] ;
     }
-    catch(PDOException $e){
+        catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
 }
