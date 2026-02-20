@@ -12,7 +12,7 @@ $id = $_GET["id"];
                 action="update.php?id<?=$id?>"
                 style="max-width: 500px"
                 class="mx-auto">
-                <h2 class="mb-3">Contactez Nous</h2>
+                <h2 class="mb-3">Modification de compte?</h2>
                 <div class="row g-3">
                   <div class="col-md-6">
                     <label for="name" class="form-label">Nom</label>

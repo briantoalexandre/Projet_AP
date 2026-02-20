@@ -33,7 +33,7 @@ function readSalaries() {
 function updateSalaries($tab) {
     try {
         global $conn ;
-        $sql = "update contact set nom='', prenom='',mail='',naissance='',sujet='' where id=''";
+        $sql = 'update contact set nom=\''.$tab["name"].'\', prenom=\''.$tab["surname"].'\',date_naissance=\''.$tab["birth"].'\', date_embauche=\''.$tab["job"].'\', salaire=\''.$tab["salaire"].'\', service=\''.$tab["service"].'\', where id=\''.$tab["id"].'\'';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
