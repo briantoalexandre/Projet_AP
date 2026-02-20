@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" href="../img/logo_Hotel_Chambord-ico.png">
+    <title>Gestion des Offres d'emploi | Hôtel Chambord</title>
+</head>
+
+<body>
+
+    <!-- Bandeau haut -->
+    <div class="text-end small py-1 px-3 bg-light border-bottom">
+        <span class="text-dark">
+            <i class="fa-solid fa-briefcase"></i> Espace Administrateur
+        </span>
+    </div>
+
+ 
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../img/logo_Hotel_Chambord-all.png" class="logo" alt="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse width-800" id="navMenu">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fa-solid fa-arrow-left"></i> Retour Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="container py-5">
+
+        <h1 class="text-center mb-5">Gestion des Offres d'Emploi</h1>
+
+        <div class="row g-5">
+
+            <!-- Formulaire d'ajout -->
+            <div class="col-lg-5">
+                <div class="card shadow p-4">
+
+                    <h4 class="mb-3 text-center" id="form-title">Ajouter une offre</h4>
+
+                    <form id="form-offre">
+
+                        <input type="hidden" id="editIndex">
+
+                        <div class="mb-3">
+                            <label class="form-label">Titre du poste</label>
+                            <input type="text" class="form-control" id="titre" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description du poste</label>
+                            <textarea class="form-control" rows="5" id="description" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Compétences requises</label>
+                            <textarea class="form-control" rows="4" id="competences" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Salaire (optionnel)</label>
+                            <input type="text" class="form-control" id="salaire">
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100 fw-bold" id="btn-submit">
+                            Ajouter l'offre
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Liste des offres -->
+            <div class="col-lg-7">
+                <div class="card shadow p-4">
+
+                    <h4 class="mb-4 text-center">Offres existantes</h4>
+
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Compétences</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="liste-offres">
+                            <!-- JS insère les offres ici -->
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="mt-5 shadow pt-5">
+        <p class="text-center">
+            &copy; 2023 Hôtel Chambord — Espace Administrateur<br>
+            <em>Ce site est un projet pédagogique.</em>
+        </p>
+    </footer>
+
+    <script src="../js/bootstrap.js"></script>
+
+    <!-- SCRIPT FONCTIONNEL -->
+    <script>
+        let offres = JSON.parse(localStorage.getItem("offres")) || [];
+
+        function afficherOffres() {
+            const tbody = document.getElementById("liste-offres");
+            tbody.innerHTML = "";
+
+            offres.forEach((o, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${o.titre}</td>
+                        <td>${o.competences}</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-primary me-2" onclick="modifierOffre(${index})">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="supprimerOffre(${index})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function sauvegarder() {
+            localStorage.setItem("offres", JSON.stringify(offres));
+        }
+
+        document.getElementById("form-offre").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const titre = document.getElementById("titre").value;
+            const description = document.getElementById("description").value;
+            const competences = document.getElementById("competences").value;
+            const salaire = document.getElementById("salaire").value;
+            const editIndex = document.getElementById("editIndex").value;
+
+            const nouvelleOffre = { titre, description, competences, salaire };
+
+            if (editIndex !== "") {
+                offres[editIndex] = nouvelleOffre;
+                document.getElementById("form-title").textContent = "Ajouter une offre";
+                document.getElementById("btn-submit").textContent = "Ajouter l'offre";
+                document.getElementById("editIndex").value = "";
+            } else {
+                offres.push(nouvelleOffre);
+            }
+
+            sauvegarder();
+            afficherOffres();
+            this.reset();
+        });
+
+        function supprimerOffre(index) {
+            if (confirm("Supprimer cette offre ?")) {
+                offres.splice(index, 1);
+                sauvegarder();
+                afficherOffres();
+            }
+        }
+
+        function modifierOffre(index) {
+            const o = offres[index];
+
+            document.getElementById("titre").value = o.titre;
+            document.getElementById("description").value = o.description;
+            document.getElementById("competences").value = o.competences;
+            document.getElementById("salaire").value = o.salaire;
+
+            document.getElementById("editIndex").value = index;
+            document.getElementById("form-title").textContent = "Modifier l'offre";
+            document.getElementById("btn-submit").textContent = "Enregistrer";
+        }
+
+        afficherOffres();
+    </script>
+</body>
+</html>
