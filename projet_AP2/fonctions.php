@@ -2,7 +2,6 @@
 require_once("connexion.php");
 
 function createSalaries($tab) {
-    print_r($tab);
     try {
         global $conn;
         $sql = 'INSERT INTO `salaries` (nom, prenom, date_naissance ,date_embauche, salaire, service) VALUES
@@ -31,12 +30,14 @@ function readSalaries() {
         echo "Erreur : " . $e->getMessage();
     }
 
-function updateSalaries() {
+function updateSalaries($tab) {
     try {
         global $conn ;
-        $sql = "select service, count(id) as nb_par_service from salaries group by service";
+        $sql = "update contact set nom='', prenom='',mail='',naissance='',sujet='' where id=''";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
+
+        header('Location: listeContact.php');
 
     }
     catch(PDOException $e){

@@ -1,5 +1,6 @@
 <?php
 require_once("fonctions.php");
 $id = $_GET['id'];
-deleteSalaries($id);
+$tab = 
+updateSalaries($id);
 ?>

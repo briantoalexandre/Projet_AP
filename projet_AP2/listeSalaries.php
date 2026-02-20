@@ -31,7 +31,7 @@ $services = nb_par_serv();
         <td><?= htmlspecialchars( $leSalarie['date_embauche']); ?></td>
         <td><?= htmlspecialchars( $leSalarie['salaire']); ?></td>
         <td><?= htmlspecialchars( $leSalarie['service']); ?></td>
-        <td><?= htmlspecialchars( $leSalarie['service']); ?></td>
+        <td><a href="createContactHTML.php?id=<?=$leSalarie['id']?>">update</a></td>
         <td><a href="delete.php?id=<?=$leSalarie['id']?>">Supp</a></td>
       </tr> 
     <?php endforeach; ?>
