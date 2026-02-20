@@ -9,12 +9,17 @@ $id = $_GET["id"];
               <form
                 id="contact-form"
                 method="post"
-                action="update.php?id<?=$id?>"
+                action="update.php"
                 style="max-width: 500px"
                 class="mx-auto">
                 <h2 class="mb-3">Modification de compte?</h2>
                 <div class="row g-3">
                   <div class="col-md-6">
+                    <input
+                        type="hidden"
+                        name="id"
+                        value="<?= $id; ?>"
+                        required/>
                     <label for="name" class="form-label">Nom</label>
                     <input
                       type="text"

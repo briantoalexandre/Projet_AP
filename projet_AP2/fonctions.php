@@ -29,11 +29,11 @@ function readSalaries() {
     catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
-
+}
 function updateSalaries($tab) {
     try {
         global $conn ;
-        $sql = 'update contact set nom=\''.$tab["name"].'\', prenom=\''.$tab["surname"].'\',date_naissance=\''.$tab["birth"].'\', date_embauche=\''.$tab["job"].'\', salaire=\''.$tab["salaire"].'\', service=\''.$tab["service"].'\', where id=\''.$tab["id"].'\'';
+        $sql = 'update salaries set nom=\''.$tab["name"].'\', prenom=\''.$tab["surname"].'\',date_naissance=\''.$tab["birth"].'\', date_embauche=\''.$tab["job"].'\', salaire=\''.$tab["salaire"].'\', service=\''.$tab["service"].'\' where id = '.$tab["id"];
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
@@ -44,7 +44,7 @@ function updateSalaries($tab) {
         echo "Erreur : " . $e->getMessage();
     }
 }
-}
+
 function deleteSalaries($id) {
     try {
         global $conn ;

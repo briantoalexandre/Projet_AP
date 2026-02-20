@@ -1,6 +1,6 @@
 <?php
 require_once("fonctions.php");
-$id = $_GET['id'];
+$id = $_POST['id'];
 $name = $_POST["name"];
 $surname = $_POST["surname"];
 $birth = $_POST["birth"];
@@ -18,6 +18,7 @@ if (isset($name) and !empty($name)) {
                 if (isset($salaire) and !empty($salaire)) {
                     if (isset($service) and !empty($service)) {
                         $tab = ["name" => $name, "surname" => $surname, "birth" => $birth, "job" => $job, "salaire" => $salaire, "service" => $service, "id" => $id];
+                        print_r($tab);
                         updateSalaries($tab);
                     }
                 }
