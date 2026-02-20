@@ -51,6 +51,8 @@ function deleteSalaries($id) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
+        header('Location: listeSalaries.php');
+
     }
     catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
