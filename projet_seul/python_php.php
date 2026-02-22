@@ -14,8 +14,10 @@ if (isset($username) and !empty($username)) {
             if (isset($name) and !empty($name)) {
                 echo "file size : ".(filesize($filename))."<br>";
                 if (filesize($filename)  > 3) {
-                    $append = json_decode(file_get_contents($filename), true)[0];
-                    $table[] = $append;
+                    $append = json_decode(file_get_contents($filename), true);
+                    foreach($append as $value => $row) {
+                        $table[] = $row;
+                    }
                     $id = count($table)+1;
                     print_r($append);
                     echo "<br>";
