@@ -16,7 +16,7 @@ if (isset($username) and !empty($username)) {
 
                 print_r($append)
 
-                exit;
+                exit();
         
                 $table = [$array];
                 $data = [$id=> ["username" => $username, "passwd" => $passwd, "email" => $email, "name" => $name]];
