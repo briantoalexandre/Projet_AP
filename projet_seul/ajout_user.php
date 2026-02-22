@@ -8,10 +8,10 @@
 <body>
   <form action="python_php.php" method="get">
     <table>
-        <thead>username</thead>
-        <thead>password</thead>
-        <thead>email</thead>
-        <thead>name</thead>
+        <th>username</th>
+        <th>password</th>
+        <th>email</th>
+        <th>name</th>
       <tr>
         <td><input type="text" name="username" id="username" required></td>
         <td><input type="text" name="passwd" id="passwd" required></td>
