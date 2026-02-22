@@ -24,17 +24,18 @@ if (isset($username) and !empty($username)) {
                     $table = [];
                     $id = 1;
                 }
-                $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
+                $passwd = hash("md5", $passwd)
+                $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'($passwd)'", 'email' => "'$email'", 'name'  => "'$name'"]];
                 $table[] = $data;
                 $enc_table = json_encode($table);
                 $file = fopen($filename, "w");
                 fwrite($file, $enc_table);
                 fclose($file);
-
+                /*
                 foreach($table as $key => $row) {
-                    echo "$key => ".json_encode($row);
-                    echo "<br>";
+                    echo "$key => ".json_encode($row)."<br>";
                 }
+                */
                 
             }
         }

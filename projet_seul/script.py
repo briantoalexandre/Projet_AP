@@ -1,6 +1,6 @@
 from json import load
 
-filename = "projet_seul/userProfile.json"
+filename = "userProfile.json"
 def read():
     try:
         with open(filename, "r") as rf:
