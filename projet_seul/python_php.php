@@ -26,8 +26,7 @@ if (isset($username) and !empty($username)) {
                 }
                 print_r($table);
                 echo "<br>";
-                print_r(array("hello"));
-                echo "<br>";
+                echo "id : $id <br>";
 
                 if (1==1) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
