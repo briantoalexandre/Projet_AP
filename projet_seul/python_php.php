@@ -13,16 +13,11 @@ if (isset($username) and !empty($username)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
                 $append = array(file_get_contents($filename));
-                
+
                 echo("$append\n");
 
                 exit;
-                    
-                }
-                else {
-                    $file = fopen($filename, "w");
-                    $id = "1";
-                }
+        
                 $table = [$array];
                 $data = [$id=> ["username" => $username, "passwd" => $passwd, "email" => $email, "name" => $name]];
                 $table[] = $data;
