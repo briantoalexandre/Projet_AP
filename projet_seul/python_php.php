@@ -14,7 +14,7 @@ if (isset($username) and !empty($username)) {
             if (isset($name) and !empty($name)) {
                 $append = array(file_get_contents($filename));
 
-                print_r($append)
+                print_r($append);
 
                 if (1==2) {
                 $table = [$array];
