@@ -18,7 +18,7 @@ if (isset($username) and !empty($username)) {
                     print_r($append);
                     echo "<br>";
                 }
-                catch {
+                catch (Throwable $e) {
                     $table = [];
                     $id = 1;
                 }
