@@ -12,7 +12,7 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                echo (filesize($filename))."<br>";
+                echo "file size : ".(filesize($filename))."<br>";
                 if (filesize($filename)  > 3) {
                     $append = json_decode(file_get_contents($filename), true)[0];
                     $table[] = $append;
@@ -24,6 +24,8 @@ if (isset($username) and !empty($username)) {
                     $table = [];
                     $id = 1;
                 }
+                print_r($table);
+                echo "<br>";
 
                 if (1==1) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
