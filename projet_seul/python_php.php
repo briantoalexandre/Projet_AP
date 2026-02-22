@@ -20,7 +20,7 @@ if (isset($username) and !empty($username)) {
                     echo("1");
                 }
                 else {
-                    $id = $append[strval(count($append))]+1;
+                    $id = $append[count($append)-1]+1;
                     echo("2");
                 }
 
@@ -28,7 +28,7 @@ if (isset($username) and !empty($username)) {
 
                 if (1==1) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
-                $append[] = $data;
+                $append[0][] = $data;
                 $file = fopen($filename, "w");
                 fwrite($file, json_encode($append));
                 fclose($file);
