@@ -24,9 +24,9 @@ if (isset($username) and !empty($username)) {
                 else {
                     echo("2");
                 }
-                $append = json_decode($append)
+                $append = json_decode($append);
                 print_r($append);
-                echp "\n\n"
+                echp "\n\n";
                 
 
                 if (1==2) {
