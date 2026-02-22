@@ -13,15 +13,20 @@ if (isset($username) and !empty($username)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
                 $append = array(file_get_contents($filename));
+                if (empty($append)) {
+                    $id = "1";
+                }
+                else {
+                    $id = $append[strval(count($append)+1)];
+                }
 
                 print_r($append);
 
-                if (1==2) {
-                $table = [$array];
+                if (1==1) {
                 $data = [$id=> ["username" => $username, "passwd" => $passwd, "email" => $email, "name" => $name]];
-                $table[] = $data;
+                $append[] = $data;
                 $file = fopen($filename, "w");
-                fwrite($file, json_encode($table));
+                fwrite($file, json_encode($append));
                 fclose($file);
                 }
             }
