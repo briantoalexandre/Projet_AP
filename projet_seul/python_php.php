@@ -14,7 +14,7 @@ if (isset($username) and !empty($username)) {
             if (isset($name) and !empty($name)) {
                 $append = array(file_get_contents($filename));
                 print_r($append);
-                if (count($append)<=1) {
+                if (strlen($append[0]) === 0) {
                     $append = array();
                     $id = 1;
                     echo("1");
