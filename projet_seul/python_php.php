@@ -24,8 +24,6 @@ if (isset($username) and !empty($username)) {
                     $table = [];
                     $id = 1;
                 }
-                print_r($table);
-                echo "<br>";
                 echo "id : $id <br>";
 
                 if (1==1) {
@@ -34,6 +32,9 @@ if (isset($username) and !empty($username)) {
                 $file = fopen($filename, "w");
                 fwrite($file, json_encode($table));
                 fclose($file);
+
+                print_r($table);
+                echo "<br>";
                 }
             }
         }
