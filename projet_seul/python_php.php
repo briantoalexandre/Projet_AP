@@ -13,7 +13,8 @@ if (isset($username) and !empty($username)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
                 $append = array(file_get_contents($filename));
-                echo "$append\n";
+                
+                echo("$append\n");
 
                 exit;
                     
