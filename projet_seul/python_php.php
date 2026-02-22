@@ -13,7 +13,7 @@ if (isset($username) and !empty($username)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
                 $append = file_get_contents($filename);
-                echo("value : '$append'\n\n");
+                echo("value : '$append'<br><br>");
                 
                 
                 if (strlen($append[0]) === 0) {
@@ -24,9 +24,10 @@ if (isset($username) and !empty($username)) {
                 else {
                     echo("2");
                 }
+                echo "<br>";
                 $append = json_decode($append);
                 print_r($append);
-                echo "\n\n";
+                echo "<br><br>";
                 
 
                 if (1==2) {
@@ -41,3 +42,4 @@ if (isset($username) and !empty($username)) {
     }
 }
 ?>
+
