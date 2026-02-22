@@ -12,8 +12,10 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                $append = array(file_get_contents($filename));
-                print_r($append);
+                $append = file_get_contents($filename);
+                echo("value : '$append'\n");
+                $append = array($append);
+                
                 if (strlen($append[0]) === 0) {
                     $append = array();
                     $id = 1;
@@ -24,7 +26,7 @@ if (isset($username) and !empty($username)) {
                     $id = $append[count($append)-1]+1;
                     echo("2");
                 }
-
+                print_r($append);
                 
 
                 if (1==1) {
