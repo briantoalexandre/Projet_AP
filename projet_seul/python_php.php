@@ -24,9 +24,9 @@ if (isset($username) and !empty($username)) {
                 }
                 $table = [$array];
                 $data = [$id=> ["username" => $username, "passwd" => $passwd, "email" => $email, "name" => $name]];
-                $table[] = $data
+                $table[] = $data;
                 $file = fopen($filename, "w");
-                fwrite($file, json_encode($table);
+                fwrite($file, json_encode($table));
                 fclose($file);
             }
         }
