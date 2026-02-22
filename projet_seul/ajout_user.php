@@ -7,10 +7,18 @@
 </head>
 <body>
   <form action="python_php.php" method="get">
-    <input type="text" name="username" id="username" required>
-    <input type="text" name="passwd" id="passwd" required>
-    <input type="email" name="email" id="email" required>
-    <input type="text" name="name" id="name" required>
+    <table>
+        <thead>username</thead>
+        <thead>password</thead>
+        <thead>email</thead>
+        <thead>name</thead>
+      <tr>
+        <td><input type="text" name="username" id="username" required></td>
+        <td><input type="text" name="passwd" id="passwd" required></td>
+        <td><input type="email" name="email" id="email" required></td>
+        <td><input type="text" name="name" id="name" required></td>
+      </tr>
+    </table>
     <button type="submit">SUBMIT</button>
   </form>
 </body>
