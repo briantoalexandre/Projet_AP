@@ -31,8 +31,11 @@ if (isset($username) and !empty($username)) {
                 fwrite($file, $enc_table);
                 fclose($file);
 
-                print_r($table);
-                echo "<br>$enc_table <br>";
+                foreach($table as $key => $row) {
+                    echo "$key => ".json_encode($row);
+                    echo "<br>";
+                }
+                
             }
         }
     }
