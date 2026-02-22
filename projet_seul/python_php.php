@@ -27,7 +27,7 @@ if (isset($username) and !empty($username)) {
                 echo "<br><br>";
                 $append = json_decode($append);
                 foreach($append as $value=>$val) {
-                    echo "$value => $val<br>"
+                    echo "$value => $val<br>";
                 }
                 echo "<br><br>";
                 
