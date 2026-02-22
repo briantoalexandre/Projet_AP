@@ -20,7 +20,7 @@ if (isset($username) and !empty($username)) {
                     echo("1");
                 }
                 else {
-                    $append = [$append[0]]
+                    $append = [$append[0]];
                     $id = $append[count($append)-1]+1;
                     echo("2");
                 }
