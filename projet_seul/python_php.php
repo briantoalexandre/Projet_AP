@@ -14,7 +14,7 @@ if (isset($username) and !empty($username)) {
             if (isset($name) and !empty($name)) {
                 $append = file_get_contents($filename);
                 echo("value : '$append'\n");
-                $append = array($append);
+                $append = json_decode($append);
                 
                 if (strlen($append[0]) === 0) {
                     $append = array();
