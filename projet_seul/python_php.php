@@ -37,6 +37,6 @@ if (isset($username) and !empty($username)) {
         }
     }
 }
-header("ajout_user.php")
+header("Location: ajout_user.php")
 ?>
 
