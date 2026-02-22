@@ -24,9 +24,11 @@ if (isset($username) and !empty($username)) {
                 else {
                     echo("2");
                 }
-                echo "<br>";
+                echo "<br><br>";
                 $append = json_decode($append);
-                print_r($append);
+                foreach($append as $value=>$val) {
+                    echo "$value => $val<br>"
+                }
                 echo "<br><br>";
                 
 
