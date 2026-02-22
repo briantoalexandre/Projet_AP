@@ -12,8 +12,8 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                echo "(filesize($filname))<br>";
-                if (filesize($filname)) {
+                echo "(filesize($filename))<br>";
+                if (filesize($filename)) {
                     $append = json_decode(file_get_contents($filename), true)[0];
                     $table[] = $append;
                     print_r($append);
