@@ -19,16 +19,11 @@ if (isset($username) and !empty($username)) {
                         $table[] = $row;
                     }
                     $id = count($table)+1;
-                    print_r($append);
-                    echo "<br>";
                 }
                 else {
                     $table = [];
                     $id = 1;
                 }
-                echo "id : $id <br>";
-
-                if (1==1) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
                 $table[] = $data;
                 $enc_table = json_encode($table);
@@ -38,10 +33,10 @@ if (isset($username) and !empty($username)) {
 
                 print_r($table);
                 echo "<br>$enc_table <br>";
-                }
             }
         }
     }
 }
+header("ajout_user.php")
 ?>
 
