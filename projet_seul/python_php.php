@@ -13,7 +13,7 @@ if (isset($username) and !empty($username)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
                 $append = file_get_contents($filename);
-                echo("value : '$append'\n");
+                echo("value : '$append'\n\n");
                 
                 
                 if (strlen($append[0]) === 0) {
@@ -22,14 +22,14 @@ if (isset($username) and !empty($username)) {
                     echo("1");
                 }
                 else {
-                    $append = [json_decode($append)];
-                    $id = $append[count($append)-1]+1;
                     echo("2");
                 }
+                $append = json_decode($append)
                 print_r($append);
+                echp "\n\n"
                 
 
-                if (1==1) {
+                if (1==2) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
                 $append[] = $data;
                 $file = fopen($filename, "w");
