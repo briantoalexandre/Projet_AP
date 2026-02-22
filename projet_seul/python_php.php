@@ -12,15 +12,22 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                $append = json_decode(file_get_contents($filename), true)[0];
-                print_r($append);
-                
+                try {
+                    $append = json_decode(file_get_contents($filename), true)[0];
+                    $table[] = $append;
+                    print_r($append);
+                    echo "<br>";
+                }
+                catch {
+                    $table = [];
+                    $id = 1;
+                }
 
                 if (1==2) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
-                $append[] = $data;
+                $table[] = $data;
                 $file = fopen($filename, "w");
-                fwrite($file, json_encode($append));
+                fwrite($file, json_encode($table));
                 fclose($file);
                 }
             }
