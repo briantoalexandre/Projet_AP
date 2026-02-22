@@ -29,7 +29,7 @@ if (isset($username) and !empty($username)) {
                 if (1==1) {
                 $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
                 $table[] = $data;
-                $enc_table = $table
+                $enc_table = $table;
                 $file = fopen($filename, "w");
                 fwrite($file, $enc_table);
                 fclose($file);
