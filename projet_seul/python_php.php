@@ -12,7 +12,7 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                $append = json_decode(file_get_contents($filename));
+                $append = array(json_decode(file_get_contents($filename)));
                 print_r($append);
                 
 
