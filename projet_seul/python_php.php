@@ -16,9 +16,11 @@ if (isset($username) and !empty($username)) {
                 print_r($append);
                 if (empty($append)) {
                     $id = "1";
+                    echo("1");
                 }
                 else {
                     $id = strval($append[strval(count($append))]+1);
+                    echo("2");
                 }
 
                 
