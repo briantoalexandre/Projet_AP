@@ -15,18 +15,18 @@ if (isset($username) and !empty($username)) {
                 $append = array(file_get_contents($filename));
                 print_r($append);
                 if (empty($append)) {
-                    $id = "1";
+                    $id = 1;
                     echo("1");
                 }
                 else {
-                    $id = strval($append[strval(count($append))]+1);
+                    $id = $append[strval(count($append))]+1;
                     echo("2");
                 }
 
                 
 
                 if (1==1) {
-                $data = [$id=> ["username" => $username, "passwd" => $passwd, "email" => $email, "name" => $name]];
+                $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
                 $append[] = $data;
                 $file = fopen($filename, "w");
                 fwrite($file, json_encode($append));
