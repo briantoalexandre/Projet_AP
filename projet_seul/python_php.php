@@ -12,10 +12,10 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                if (!empty(fopen($filename, "w"))) {
-                    $file = fopen($filename, "w");
-                    $array = array(file_get_contents($filename));
-                    $id = count($array)+1;
+                $append = array(file_get_contents($filename))
+                echo "$append\n"
+
+                exit;
                     
                 }
                 else {
