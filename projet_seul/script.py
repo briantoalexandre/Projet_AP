@@ -1,11 +1,34 @@
 from json import load
+from sys import argv
+from os import path
 
-filename = "projet_seul/userProfile.json"
+# argv from sys allows to take arguments from the command line like : 'python3 script.py flush'
+
+directory = (lambda tup=path.split(argv[0]): tup[0]+"/" if bool(tup[0]) else "./")
+filename = (directory()+"userProfile.json").replace("\\", "/")
+
 def read():
-    try:
-        with open(filename, "r") as rf:
-            print([f"{key} : {value}" for key, value in load(rf)], sep="\n")
-    except IndexError:
-        print("error")
+    """print the content of the file"""
+    with open(filename, "r") as rf:
+        print(*load(rf), sep="\n")
 
-read()
+def flush():
+    """clean the file"""
+    with open(filename, "w") as wf:
+        wf.write("[]")
+    print(f"{filename} flushed!")
+
+def main():
+    """main function"""
+    args = argv
+    try:
+        if len(args) == 2 and args[1].lower() == "flush":
+            flush()
+        else:
+            read()
+    except Exception as e:
+        print(f"ERROR : {e}")
+
+main()
+print("END OF FILE\n")
+    

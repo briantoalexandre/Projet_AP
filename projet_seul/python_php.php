@@ -12,24 +12,35 @@ if (isset($username) and !empty($username)) {
     if (isset($passwd) and !empty($passwd)) {
         if (isset($email) and !empty($email)) {
             if (isset($name) and !empty($name)) {
-                if (!empty(fopen($filename, "w"))) {
-                    $file = fopen($filename, "w");
-                    $array = array(file_get_contents($filename));
-                    $id = count($array)+1;
-                    
+                echo "file size : ".(filesize($filename))."<br>";
+                if (filesize($filename)  > 3) {
+                    $append = json_decode(file_get_contents($filename), true);
+                    foreach($append as $value => $row) {
+                        $table[] = $row;
+                    }
+                    $id = count($table)+1;
                 }
                 else {
-                    $file = fopen($filename, "w");
-                    $id = "1";
+                    $table = [];
+                    $id = 1;
                 }
-                $table = [$array];
-                $data = [$id=> ["username" => $username, "passwd" => $passwd, "email" => $email, "name" => $name]];
-                $table[] = $data
+                $passwd = hash("md5", $passwd);
+                $data = ["'$id'" => ['username' => "'$username'", 'passwd' => "'$passwd'", 'email' => "'$email'", 'name'  => "'$name'"]];
+                $table[] = $data;
+                $enc_table = json_encode($table);
                 $file = fopen($filename, "w");
-                fwrite($file, json_encode($table);
+                fwrite($file, $enc_table);
                 fclose($file);
+                /*
+                foreach($table as $key => $row) {
+                    echo "$key => ".json_encode($row)."<br>";
+                }
+                */
+                
             }
         }
     }
 }
+header("Location: ajout_user.php")
 ?>
+
