@@ -3,17 +3,18 @@ require_once("get-proxy.php"); // au lycée pour faire des requêtes https vous 
 
 $key = "9e43f45f94705cc8e1d5a0400d19a7b7";
 
-
+/* 
 //films les plus populaires
 $url = "https://api.themoviedb.org/3/movie/popular?api_key=$key&language=fr-FR";
 $response = getProxy($url);
-//$response = file_get_contents("https://api.themoviedb.org/3/movie/popular?api_key=$key&language=fr-FR");
+//$response = file_get_contents("https://api.themoviedb.org/3/movie/popular?api_key=$key&language=fr-FR"); //proxy
 $result = json_decode($response, true);
 echo"<pre>";
 print_r($result);
-echo"</pre>";
+echo"</pre>"; 
+*/
 
-/*films les mieux notés
+//films les mieux notés
 $url = "https://api.themoviedb.org/3/movie/top_rated?api_key=$key&language=fr-FR";
 $response = getProxy($url);
 //$response = file_get_contents("https://api.themoviedb.org/3/movie/top_rated?api_key=$key&language=fr-FR");
@@ -21,7 +22,7 @@ $result = json_decode($response, true);
 echo"<pre>";
 print_r($result['results']);
 echo"</pre>";
-*/
+
 
 /*obtenir le détail d'un film
 $movieId = 76600; // Ex: ID du film "Avatar"
