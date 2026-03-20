@@ -15,7 +15,7 @@
               <p class=" lh-sm">
                 <strong><?php echo $movie['title']; ?></strong>
               </p>
-             <button type="button" class="btn btn-primary mt-auto">View</button>
+             <button type="button" class="btn btn-primary mt-auto" onclick="location.href='movieDetail.php?movieId=<?=$movie['id']?>'">View</button>
             </div>
           </div>
         </div>

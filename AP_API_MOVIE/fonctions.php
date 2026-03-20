@@ -44,6 +44,17 @@ require_once("get-proxy.php");// au lycée pour faire des requêtes https vous a
         return $result;
     }
 
+    function getActors($movieId) {
+        $key = "9e43f45f94705cc8e1d5a0400d19a7b7";
+        $url = "https://api.themoviedb.org/3/movie/$movieId/credits?api_key=$key&language=fr-FR";
+        $response = getProxy($url);
+        //$response = file_get_contents($url);
+       
+        $result = json_decode($response, true);
+        return $result["cast"];
+    }
+
+
     function moviesGetKey($movieId) {
         $key = "9e43f45f94705cc8e1d5a0400d19a7b7";
         $url = "https://api.themoviedb.org/3/movie/$movieId/videos?api_key=$key&language=fr-FR";
@@ -54,6 +65,26 @@ require_once("get-proxy.php");// au lycée pour faire des requêtes https vous a
         return $result;
     }
       
+
+    function actorsGetDetail($actorId) { //actorDetail.php
+        $key = "9e43f45f94705cc8e1d5a0400d19a7b7";
+        $url = "https://api.themoviedb.org/3/person/$actorId?api_key=$key&language=fr-FR";
+        $response = getProxy($url);
+        //$response = file_get_contents($url);
+       
+        $result = json_decode($response, true);
+        return $result;
+    }
+
+    function getMovies($actorId) {
+        $key = "9e43f45f94705cc8e1d5a0400d19a7b7";
+        $url = "https://api.themoviedb.org/3/person/$actorId/credits?api_key=$key&language=fr-FR";
+        $response = getProxy($url);
+        //$response = file_get_contents($url);
+       
+        $result = json_decode($response, true);
+        return $result["cast"];
+    }
 
    // https://api.themoviedb.org/3/find/ 
 ?>
