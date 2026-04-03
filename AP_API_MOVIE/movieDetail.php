@@ -2,7 +2,7 @@
 <?php require_once("fonctions.php"); ?>
 
 <?php $movieId = $_GET["movieId"];
-  $key = $key["key"];
+  ;
   $movie = moviesGetDetail($movieId);
   $actors = getActors($movieId) ?>
 
@@ -52,5 +52,8 @@
         </div>
     </div>
 </div>
+<pre> <?php print_r($key)?></pre>
+ 
+
 
 <?php require("footer.php"); ?>
