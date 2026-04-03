@@ -1,17 +1,22 @@
 <?php require("header.php"); ?>
-<?php require("fonctions.php"); ?>
+<?php require_once("fonctions.php"); ?>
 
-<?php $query = $_GET["query"];
-  $page = $_GET["page"];
-  $page0 = $page - 1;
-  $query = queryM($query); ?>
+<?php $queryGET = $_GET["query"];
+  $page = intval($_GET["page"]);
+  $query = queryM($queryGET, $page); 
+  $maxpage = $query["total_pages"]; ?>
 
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
-       <h4>---</h4>
-       <ul class="pagination">
-        <li><a <?=($page > 1) ? "href=''" : "href='queryM.php?query=$query&page=$page0'"?>><</a></li>
-       </ul>
+       <h4><?="$page/$maxpage"?></h4>
+       <nav>
+        <ul class="pagination">
+          <li><button onclick="location.href='./queryM.php?query=<?=$queryGET?>&page=<?=1?>'" >|<</button></li>
+          <li><button style="<?= ($page>1) ? '' : 'pointer-events: none;' ?>"   onclick="location.href='./queryM.php?query=<?=$queryGET?>&page=<?=$page-1?>'" ><</button></li>
+          <li><button style="<?= ($page<$maxpage) ? '' : 'pointer-events: none;' ?>"  onclick="location.href='./queryM.php?query=<?=$queryGET?>&page=<?=$page+1?>'" >></button></li>
+          <li><button onclick="location.href='./queryM.php?query=<?=$queryGET?>&page=<?=$maxpage?>'" >>|</button></li>
+        </ul>
+      </nav>
      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
      <?php foreach($query["results"] as $result) : ?>  
         <div class="d-flex align-items-stretchl">

@@ -1,13 +1,24 @@
 <?php require("header.php"); ?>
-<?php require("fonctions.php"); ?>
+<?php require_once("fonctions.php"); ?>
 
-<?php  $popularMovies = popularMovies(); ?>
+<?php $page = $_GET["page"];
+$popularMovies = popularMovies($page); 
+$maxpage = $popularMovies["total_pages"]?>
 
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
-       <h4>Films les plus populaires</h4>
+        <h4>Films les plus populaires</h4>
+          <h5><?="$page/$maxpage"?></h5>
+            <nav>
+              <ul class="pagination">
+                <li><button onclick="location.href='./popular.php?page=<?=1?>'" >|<</button></li>
+                <li><button style="<?= ($page>1) ? '' : 'pointer-events: none;' ?>"   onclick="location.href='./popular.php?page=<?=$page-1?>'" ><</button></li>
+                <li><button style="<?= ($page<$maxpage) ? '' : 'pointer-events: none;' ?>"  onclick="location.href='./popular.php?page=<?=$page+1?>'" >></button></li>
+                <li><button style="pointer-events: none" onclick="location.href='./popular.php?page=<?=$maxpage?>'" >>|</button></li>
+              </ul>
+            </nav>
      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-     <?php foreach($popularMovies as $movie) : ?>  
+     <?php foreach($popularMovies['results'] as $movie) : ?>  
         <div class="d-flex align-items-stretchl">
           <div class="card shadow-sm ">
             <img src="<?php echo 'https://image.tmdb.org/t/p/w780/'.$movie['poster_path']; ?>" >
