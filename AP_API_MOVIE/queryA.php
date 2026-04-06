@@ -1,5 +1,4 @@
 <?php require("header.php"); ?>
-<?php require_once("fonctions.php"); ?>
 
 <?php $queryGET = $_GET["query"];
   $page = intval($_GET["page"]);

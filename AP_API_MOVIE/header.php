@@ -1,6 +1,4 @@
-<?php require("fonctions.php"); 
-$genres = getGenres();
-?>
+<?php require("fonctions.php"); ?>
 
 <!doctype html>
 <html lang="fr">
@@ -24,10 +22,7 @@ $genres = getGenres();
   </style>
     
   </head>
-  <body>
-
-  
-         
+  <body>         
   <nav class="navbar fixed navbar-expand-md navbar-dark text-withe bg-dark shadow py-2">
     <div class="container">
     <a href="popular.php?page=1" class="navbar-brand d-flex align-items-left ">
@@ -49,10 +44,9 @@ $genres = getGenres();
                   Genre
                 </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <?php foreach($genres["genres"] as $genre)
-                  $genreID = intval($genre["id"]);
-                  $genreNAME = $genre["name"];
-                  echo "<li><a class='dropdown-item' href='genreMovies.php?id=$genreID&page=1'>$genreNAME</a></li>"; ?>
+                <?php foreach(getGenders() as $genre) : ?>
+                 <li><a class='dropdown-item' href='genreMovies.php?id=<?=$genre["id"]?>&page=1'><?=$genre["name"]?></a></li>
+                <?php endforeach; ?>
               </ul>
             </li>
           </ul>

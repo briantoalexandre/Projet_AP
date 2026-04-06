@@ -1,7 +1,6 @@
 <?php require("header.php"); ?>
-<?php require_once("fonctions.php"); ?>
 
-<?php  $page = $_GET["page"];
+<?php  $page = (!empty($_GET["page"])) ? $_GET["page"] : 1 ;
 $topRatedMovies = topRatedMovies($page); 
 $maxpage = $topRatedMovies["total_pages"]
 ?>

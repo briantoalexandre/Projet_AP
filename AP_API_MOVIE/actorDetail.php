@@ -1,5 +1,4 @@
 <?php require("header.php"); ?>
-<?php require_once("fonctions.php"); ?>
 
 <?php $actorId = $_GET["actorId"];
   $actor = actorsGetDetail($actorId);
@@ -9,11 +8,11 @@
     <div class="container">
         <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-5">
             <div class="d-flex align-items-stretchl mx-auto">
-                <div class="card shadow-sm my-auto mx-15">
-                  <img height="300" width="200" src="https://image.tmdb.org/t/p/w500/<?=$actor['profile_path']?>" >
+                <div class="card shadow-sm my-auto mx-15" style="display:flex;width:25%;flex-shrink:0">
+                  <img src="https://image.tmdb.org/t/p/w500/<?=$actor['profile_path']?>" >
                 </div>
-                    <div style="margin: 0 5%">
-                        <h1 style="text-align:center">  <?= (!empty($actor["name"])) ? $actor["name"] : "Name not found"?> </h1>
+                    <div style="padding:15px;">
+                        <h1 align="center"> <?= (!empty($actor["name"])) ? $actor["name"] : "Name not found"?> </h1>
                         <p><?= (!empty($actor["biography"])) ? $actor["biography"] : "Biography not found"?></p>
                 </div>
             </div>

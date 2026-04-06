@@ -1,8 +1,7 @@
 <?php require("header.php"); ?>
-<?php require_once("fonctions.php"); ?>
 
 <?php $movieId = $_GET["movieId"];
-  ;
+  $key = moviesGetKey($movieId);
   $movie = moviesGetDetail($movieId);
   $actors = getActors($movieId) ?>
 
@@ -10,11 +9,11 @@
     <div class="container">
         <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-5">
             <div class="d-flex align-items-stretchl mx-auto">
-                <div class="card shadow-sm my-auto mx-15">
-                  <img height="300" width="200" src="https://image.tmdb.org/t/p/w500/<?=$movie['poster_path']?>" >
+                <div class="card shadow-sm my-auto mx-15" style="display:flex;width:25%;flex-shrink:0">
+                  <img src="https://image.tmdb.org/t/p/w500/<?=$movie['poster_path']?>" >
                 </div>
-                    <div style="margin: 0 5%">
-                        <h1><?= (!empty($movie["title"])) ? $movie["title"] : "Title not found"?> </h1>
+                    <div style="padding:15px;">
+                        <h1 align="center"> <?= (empty($movie["title"])) ? $movie["title"] : "Title not found"?> </h1>
                         <p><?= (!empty($movie["overview"])) ? $movie["overview"] : "description not found"?></p>
                 </div>
             </div>
@@ -52,7 +51,6 @@
         </div>
     </div>
 </div>
-<pre> <?php print_r($key)?></pre>
  
 
 

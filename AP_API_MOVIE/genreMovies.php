@@ -1,9 +1,8 @@
 <?php require("header.php"); ?>
-<?php require_once("fonctions.php"); ?>
 
 <?php if ( isset($_GET['id']) AND !empty($_GET['id'])){ 
     $id = $_GET['id'];
-    $page = $_GET["page"];
+    $page = (!empty($_GET["page"])) ? $_GET["page"] : 1 ;
     $genres = moviesByGender($id, $page);
     $maxpage = $genres["total_pages"];
     } ?>
