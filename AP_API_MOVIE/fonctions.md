@@ -1,4 +1,4 @@
-# Pour commenter et decommenter les lignes pour les proxy fonctions.php avec vscode
+# Pour commenter et decommenter les lignes du proxy dans fonctions.php avec vscode
 
 * appuyer sur Ctrl+F
 * clicker sur Expression Regulière ou appuyer sur Alt+R
