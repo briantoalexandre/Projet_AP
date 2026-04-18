@@ -53,19 +53,51 @@
         <ul class="nav navbar-nav w-100 justify-content-end">
           
             <div data-mdb-input-init class="form-outline  me-3 ">
+            <form action="queryM.php" method="get" class="search-box">
+              <div style="position: relative;">
+                <input type="text" class="form-control ps-5 rounded-pill search-input" placeholder="Search Films" name="query" style="max-width:200px;" />
+                
+              </div>
+              <input type="hidden" name="page" value="1">
+              <i class="bi-search ms-3"></i>
+            </form>
+            <ul class="results" style="z-index: index 100;color:'white'"></ul>
+            </div>
+            
+
+            <div data-mdb-input-init class="form-outline  me-3">
+            <form action="queryA.php" method="get" class="search-box">
+              <div style="position: relative;">
+                <input type="text" class="form-control ps-5 rounded-pill search-input" placeholder="Search Acteurs" name="query" style="max-width:200px;" />
+                <ul class="results" style="z-index: index 100;"></ul>
+              </div>
+              <input type="hidden" name="page" value="1">
+              <i class="bi-search ms-3"></i>
+            </form>
+            </div>
+              
+<!--
+            <div data-mdb-input-init class="form-outline  me-3 ">
             <form action="queryM.php" id="search-moviess"  method="get">
-              <input type="text" class="form-control ps-5 rounded-pill" placeholder="Search Films" name="query" style="max-width:200px;" />
+              <div>
+                <input type="text" class="form-control ps-5 rounded-pill" id="movie" placeholder="Search Films" name="query" style="max-width:200px;" />
+                <ul id="results1" style="position: absolute;top: 100%;"></ul>
+              </div>
               <input type="hidden" name="page" value="1">
               <i class="bi-search ms-3"></i>
             </form>
             </div>
             <div data-mdb-input-init class="form-outline  me-3">
             <form action="queryA.php" id="search-acteurs"  method="get">
-              <input type="text" class="form-control ps-5 rounded-pill " placeholder="Search Acteurs" name="query" style="max-width:200px;"/>
+              <div>
+                <input type="text" class="form-control ps-5 rounded-pill" id="actor" placeholder="Search Acteurs" name="query" style="max-width:200px;"/>
+                <ul id="results2" style="position: absolute;top: 100%;"></ul>
+              </div>
               <input type="hidden" name="page" value="1">
               <i class="bi-search ms-3"></i>
             </form>
             </div>
+-->
 
         </ul>
       </div>

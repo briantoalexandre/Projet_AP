@@ -13,7 +13,7 @@
                   <img src="https://image.tmdb.org/t/p/w500/<?=$movie['poster_path']?>" >
                 </div>
                     <div style="padding:15px;">
-                        <h1 align="center"> <?= (empty($movie["title"])) ? $movie["title"] : "Title not found"?> </h1>
+                        <h1 align="center"> <?= (!empty($movie["title"])) ? $movie["title"] : "Title not found"?> </h1>
                         <p><?= (!empty($movie["overview"])) ? $movie["overview"] : "description not found"?></p>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         </div>
         <div style="overflow-x: auto; max-width: 100%; white-space: nowrap;">
           
-          <table style="max-width: 100%; table-layout: fixed;">
+          <table style="max-width: 100%; table-layout: fixed; overflow:hidden">
             <tr >
               <?php foreach($actors as $actor)
                 if (!empty($actor['profile_path'])){
@@ -38,7 +38,7 @@
                 ?>
             </tr>
 
-            <tr>
+            <tr >
               <?php foreach($actors as $actor)
                if (!empty($actor['name']) and !empty($actor['profile_path'])) {
                 echo "<th><p>".$actor['name']."</p></th>";
